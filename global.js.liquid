@@ -1,0 +1,14 @@
+document.documentElement.classList.add('js');
+
+const drawerIcon = document.querySelector('#js-drawer-icon');
+const drawerContent = document.querySelector('#js-drawer-content');
+
+if (drawerIcon && drawerContent) {
+	drawerIcon.addEventListener('click', function (e) {
+		e.preventDefault();
+		drawerIcon.classList.toggle('is-checked');
+		drawerContent.classList.toggle('is-checked');
+		const expanded = drawerIcon.classList.contains('is-checked');
+		drawerIcon.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+	});
+}
