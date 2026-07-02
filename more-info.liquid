@@ -1,0 +1,105 @@
+
+
+
+<section class="more-info">
+
+  <div class="more-info-wrapper">
+
+    {% if section.settings.text != blank %}
+      <h1>{{ section.settings.text }}</h1>
+    {% endif %}
+
+    {% if section.settings.text2 != blank %}
+      <p>{{ section.settings.text2 }}</p>
+    {% else %}
+      <p>THE RESOLUTION STARTER PARK</p>
+    {% endif %}
+
+    <button>shop</button>
+  </div>
+</section>
+
+<style>
+
+    .more-info{
+background:{{ section.settings.background }};
+  ;
+  color:{{ section.settings.text_color }}
+  ;
+  display:flex;
+  justify-content:center;
+  }
+
+  .more-info-wrapper{
+    font-size:50px;
+  }
+
+.more-info-wrapper button h1{
+.more-info-wrapper h1{
+    padding: 10px 20px 10px 20px;
+    background-color: black;
+    border: none;
+    color: white;
+    border-radius: 20px;
+    cursor: pointer;
+  }
+  .more-info p{
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+
+  .more-info button{
+  .more-info button{
+    padding: 10px 20px;
+    background-color: #000000;
+    color: #ffffff;
+    border: none;
+    cursor: pointer;
+  }
+.more-info-wrapper button {
+padding: 10px 20px 10px 20px;
+    background-color: black;
+    color: white;
+    border-radius: 20px;
+    cursor: pointer;
+  }
+
+.more-info-wrapper button:hover {
+    background-color:rgb(185, 185, 185);
+  }
+
+.more-info button:hover{
+    background-color: #333333;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "more-info",
+  "settings": [
+    {
+      "type": "color",
+      "id": "background",
+      "label": "background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "text",
+      "id": "text",
+      "label": "Heading",
+      "default": "default heading"
+    },
+    {
+      "type": "text",
+      "id": "text2",
+      "label": "Text 2",
+      "default": "default text"
+    }
+  ],
+  "presets": [
+    {
+      "name": "more-info"
+    }
+  ]
+}
+{% endschema %}
