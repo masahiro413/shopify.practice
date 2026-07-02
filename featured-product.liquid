@@ -1,0 +1,22 @@
+{% assign  product = all_products[section.settings.product] %}
+
+<div>
+    <h2>{{ section.settings.heading }}</h2>
+    <h3>{{ product.title }}</h3>
+    <a href="{{ product.url }}">
+        <img src="{{ product.featured_image | image_url: width:400 }}">
+    </a>
+</div>
+
+{% schema %}
+{
+  "name": "not found",
+  "settings": [
+  ],
+  "presets": [
+    {
+      "name": "not found",
+    }
+  ]
+}
+{% endschema %}
