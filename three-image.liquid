@@ -1,0 +1,99 @@
+<section>
+    <div class="three-images-wrapper">
+        {% if section.settings.image != blank %}
+            <div class="one-user" style="background-image: url('{{ section.settings.image | image_url }}');">
+                <h1></h1>
+            </div>
+        {% else %}
+            <div class="one">
+                <h1></h1>
+            </div>
+        {% endif %}
+
+        {% if section.settings.image2 != blank %}
+            <div class="two-user" style="background-image: url('{{ section.settings.image2 | image_url }}');">
+                <h1></h1>
+            </div>
+        {% else %}
+            <div class="two">
+                <h1></h1>
+            </div>
+        {% endif %}
+
+        {% if section.settings.image3 != blank %}
+            <div class="three-user" style="background-image: url('{{ section.settings.image3 | image_url }}');">
+                <h1></h1>
+            </div>
+        {% else %}
+            <div class="three">
+                <h1></h1>
+            </div>
+        {% endif %}
+    </div>
+</section>
+
+<style>
+
+.three{
+    background-color: #f5f5f5;
+    width: 33.333%;
+    height: 500px;
+    background-size: cover;
+    background-position: center;
+}
+
+.three-user {
+    background-image:url("{{ section.settings.image3 | image_url }}");
+    width: 33.333%;
+    height: 500px;
+    background-size: cover;
+    background-position: center;
+}
+
+.one,
+.two,
+.three,
+.one-user,
+.two-user,
+.three-user {
+    width: 33.33%;
+    height: 500px;
+    background-size: cover;
+    background-position: center;
+}
+
+.two {
+    background-color: #f5f5f5;
+}
+</style>
+
+{% schema %}
+{
+  "name": "three-images",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image",
+      "info": "400 x 120px .png recommended"
+    },
+    {
+      "type": "image_picker",
+      "id": "image2",
+      "label": "Image 2",
+      "info": "400 x 120px .png recommended"
+    },
+    {
+      "type": "image_picker",
+      "id": "image3",
+      "label": "Image 3"
+    }
+  ],
+  "blocks": [],
+  "presets": [
+    {
+      "name": "Three Images"
+    }
+  ]
+}
+{% endschema %}
