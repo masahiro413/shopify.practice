@@ -1,0 +1,71 @@
+{% render 'pagefly-head' %}
+
+<nav>
+  {%  render 'header' %}
+  </nav>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_search",
+      "label": "Show search bar",
+      "default": true
+    },
+    {
+      "type": "color",
+      "id": "bg",
+      "label": "Background color",
+      "default": "#ffffff"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Header"
+    }
+  ]
+}
+{% endschema %}
+
+
+
+<header class="header">
+    <h1>{{ shop.name }}</h1>
+    <ul>
+ {% for link in linklists.main-menu.links %}
+          <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+        {% endfor %}
+    </ul>
+
+
+    {% if section.settings.show_search %}
+    <form action="{{ routes.search_url }}">
+        <input type="text" name="q" placeholder="Search products..." />
+        <button type="submit">Search</button>
+    </form>
+    {% endif %}
+</header>
+
+<style>
+  .header{
+    padding: 24px;
+    background: {{ section.settings.bg }};
+    border-bottom: 1px solid #e5e7eb;
+    }
+</style>
+
+{%  stylesheet %}
+  .header{
+    padding: 24px;
+    border-bottom: 1px solid #e5e7eb;
+    }
+{% endstylesheet %}
+
+{% javascript %}
+console.log('Hey from header.liquid loaded');
+{% endjavascript %}
+
+
+
