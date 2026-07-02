@@ -1,0 +1,81 @@
+{% assign number_of_comments = article.comments_count %}
+{% if comment and comment.created_at %}
+  {% assign number_of_comments = article.comments_count %}
+{% endif %}
+
+<h1>{{ article.title }}</h1>
+<p>{{ article.published_at | date: format: 'month_day_year' }}</p>
+{% capture author %}<strong>{{ article.author }}</strong>{% endcapture %}
+{% capture date %}<time datetime="{{ article.published_at | date: '%Y-%m-%d' }}">{{ article.published_at | date: format: 'month_day_year' }}</time>{% endcapture %}
+{{ article.author }} @ {{ article.created_at }}
+
+<div>{{ article.content }}
+</div>
+{% if article.comments_enabled? %}
+    <h2>Leave a Comment</h2>
+    <div>
+    <div>{{ comment.content }}</div>
+    <div>{{ comment.author }} @ {{ comment.created_at }}</div>
+    </div>
+
+{% form 'new_comment', article %}
+
+     {{ form.errors | default_errors }}
+
+<div class="name">
+<label for="name">Name</label>
+<input type="text" id="name" name="comment[author]" value="{{ form.author }}">
+</div>
+
+<div class="email">
+<label for="email">Email</label>
+<input type="email" id="email" name="comment[email]" value="{{ form.email }}">
+</div>
+
+<div class="message">
+<label for="message">Message</label>
+<textarea id="message" name="comment[body]">{{ form.body }}</textarea>
+</div>
+
+<button type="submit">Add Comment</button>
+
+     {% endform %}
+    {% endif %}
+
+
+    {% if article.comments_count > 0 %}
+        <p>{{ article.comments_count }} comments</p>
+    {% else %}
+        <p>No comments yet.</p>
+    {% endif %}
+
+{% if blog.comments_enabled? %}
+  <h2>{{ number_of_comments }} comments</h2>
+  {% paginate article.comments by 5 %}
+    {% for comment in article.comments %}
+      <div>
+        <div>{{ comment.content }}</div>
+        {{ comment.author }} @ {{ comment.created_at }}
+      </div>
+    {% endfor %}
+    {% if paginate.pages > 1 %}
+      {{ paginate | default_pagination }}
+    {% endif %}
+  {% endpaginate %}
+
+  <div>
+    {% form 'new_comment', article %}
+      {{ form.errors | default_errors }}
+      <label for="CommentAuthor">name</label>
+      <input type="text" name="comment[author]" id="CommentAuthor" placeholder="name" value="{{ form.author }}" autocapitalize="words">
+
+      <label for="CommentEmail">email</label>
+      <input type="email" name="comment[email]" id="CommentEmail" placeholder="email" value="{{ form.email }}" autocorrect="off" autocapitalize="off">
+
+      <label for="CommentBody">message</label>
+      <textarea name="comment[body]" id="CommentBody" placeholder="message">{{ form.body }}</textarea>
+
+      <input type="submit" value="post">
+    {% endform %}
+  </div>
+{% endif %}
