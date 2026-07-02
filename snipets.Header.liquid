@@ -1,0 +1,27 @@
+{% # theme-check-disable UnusedSnippet %}
+<header>
+  <div class="right-nav-items">
+    <form action="{{ routes.search_url }}" method="get">
+      <input class="search-nav" placeholder="Search" type="search">
+    </form>
+
+    <a href="{{ routes.root_url }}">
+      <img
+        width="40"
+        height="40"
+        loading="lazy"
+        src="https://cdn.shopify.com/s/files/1/0533/2089/files/placeholder-images-image_large.png"
+      />
+    </a>
+  </div>
+
+  <div>
+    <ul class="middlea-nav-bar">
+      {% for link in linklists['main-menu'].links %}
+        <li>{{ link.title | link_to: link.url }}</li>
+      {% endfor %}
+    </ul>
+  </div>
+
+  <div class="right-nav-items"></div>
+</header>
