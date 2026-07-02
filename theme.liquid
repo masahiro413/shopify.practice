@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="{{ request.locale.iso_code }}">
+    <head>{% render 'pagefly-head' %}
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <meta name="theme-color" content="">
+        <link rel="canonical" href="{{ canonical_url }}">
+        <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
+
+        <title>{{ shop.name }}</title>
+
+        {% if page_description %}
+            <meta name="description" content="{{ page_description | escape }}">
+        {% endif %}
+
+        {% render 'pagefly-head' %}
+        {{ content_for_header }}
+        {{ 'theme.css' | asset_url | stylesheet_tag }}
+        <script src="{{ 'global.js' | asset_url }}" defer="defer"></script>
+    </head>
+    <body>
+        {% section 'announcement-bar' %}
+        {% section 'header' %}
+        <main id="Main" role="main">
+            {{ content_for_layout }}
+        </main>
+        {% section 'footer' %}
+        <script>
+            window.shopUrl = '{{ shop.url }}';
+        </script>
+    </body>
+</html>
+
+{% schema %}
+{
+  "name": "All Collections",
+  "settings": [],
+  "presets": [{ "name": "All Collections" }]
+}
+{% endschema %}cd "/Users/kanomasahiro/Desktop/shopify.practice"
+shopify auth login --store jiu2pc-mm-my-com.myshopify.com
+shopify theme dev --store jiu2pc-mm-my-com.myshopify.comopen -a "Google Chrome" "http://127.0.0.1:9292"
